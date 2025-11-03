@@ -1,102 +1,85 @@
+// src/components/category/beauty-category.jsx  (updated)
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-// internal
-import ErrorMsg from "../common/error-msg";
-import { ArrowRightSm, ArrowRightSmTwo } from "@/svg";
-import { useGetProductTypeCategoryQuery } from "@/redux/features/categoryApi";
-import { HomeThreeCategoryLoader } from "../loader";
-import { useRouter } from "next/router";
-const BeautyCategory = () => {
-  const router = useRouter();
-  const {
-    data: categories,
-    isLoading,
-    isError,
-  } = useGetProductTypeCategoryQuery("beauty");
 
-  // handle category route
-  const handleCategoryRoute = (title) => {
-    router.push(
-      `/shop?category=${title
-        .toLowerCase()
-        .replace("&", "")
-        .split(" ")
-        .join("-")}`
-    );
-  };
-  // decide what to render
-  let content = null;
+// 👉 Put four images in /public/assets/img/men/
+import jacketImg from "/public/assets/img/men/jackets.jpg";
+import footwearImg from "/public/assets/img/men/footwear.jpg";
+import watchImg from "/public/assets/img/men/watches.jpg";
+import groomingImg from "/public/assets/img/men/grooming.jpg";
 
-  if (isLoading) {
-    content = <HomeThreeCategoryLoader loading={isLoading}/>;
-  }
-  if (!isLoading && isError) {
-    content = <ErrorMsg msg="There was an error" />;
-  }
-  if (!isLoading && !isError && categories?.result?.length === 0) {
-    content = <ErrorMsg msg="No Category found!" />;
-  }
-  if (!isLoading && !isError && categories?.result?.length > 0) {
-    const category_items = categories.result;
-    content = category_items.map((item) => (
-      <div key={item._id} className="col-lg-3 col-sm-6">
-        <div className="tp-category-item-3 p-relative black-bg text-center z-index-1 fix mb-30">
-          <div
-            className="tp-category-thumb-3 include-bg"
-            style={{ backgroundImage: `url(${item.img})` }}
-          ></div>
-          <div className="tp-category-content-3 transition-3">
-            <h3 className="tp-category-title-3">
-              <a
-                className="cursor-pointer"
-                onClick={() => handleCategoryRoute(item.parent)}
+const MEN_CATEGORIES = [
+  { id: 1, title: "Jackets & Outerwear", count: 12, slug: "jackets", img: jacketImg },
+  { id: 2, title: "Premium Footwear", count: 18, slug: "footwear", img: footwearImg },
+  { id: 3, title: "Watches & Accessories", count: 9, slug: "accessories", img: watchImg },
+  { id: 4, title: "Grooming Essentials", count: 6, slug: "grooming", img: groomingImg },
+];
+
+export default function BeautyCategory() {
+  return (
+    <section className="tp-category-area pt-40 pb-40">
+      <div className="container">
+        <div className="row g-4">
+          {MEN_CATEGORIES.map((item) => (
+            <div key={item.id} className="col-xl-3 col-lg-3 col-md-6">
+              <Link
+                href={`/shop?category=${encodeURIComponent(item.slug)}`}
+                className="mens-cat-card d-block position-relative overflow-hidden rounded-3"
               >
-                {item.parent}
-              </a>
-            </h3>
-            <span className="tp-categroy-ammount-3">
-              {item.products.length} Products
-            </span>
-            <div className="tp-category-btn-3">
-              <a
-                onClick={() => handleCategoryRoute(item.parent)}
-                className="cursor-pointer tp-link-btn tp-link-btn-2"
-              >
-                View Now
-                <ArrowRightSm />
-              </a>
+                {/* Image */}
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  className="w-100 h-auto mens-cat-img"
+                  priority={item.id === 1}
+                />
+
+                {/* Overlay */}
+                <span className="mens-cat-overlay" />
+
+                {/* Text */}
+                <div className="mens-cat-text">
+                  <h3 className="mens-cat-title">{item.title}</h3>
+                  <p className="mens-cat-count">{item.count} Products</p>
+                </div>
+              </Link>
             </div>
-          </div>
+          ))}
         </div>
       </div>
-    ));
-  }
-  return (
-    <>
-      <section className="tp-category-area pt-95">
-        <div className="container">
-          <div className="row align-items-end">
-            <div className="col-lg-6 col-md-8">
-              <div className="tp-section-title-wrapper-3 mb-45">
-                <span className="tp-section-title-pre-3">
-                  Product Collection
-                </span>
-                <h3 className="tp-section-title-3">Discover our products</h3>
-              </div>
-            </div>
-            <div className="col-lg-6 col-md-4">
-              <div className="tp-category-more-3 text-md-end mb-55">
-                <Link href="/shop" className="tp-btn">
-                  Shop All Products <ArrowRightSmTwo />
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="row">{content}</div>
-        </div>
-      </section>
-    </>
-  );
-};
 
-export default BeautyCategory;
+      {/* minimal scoped styles */}
+      <style jsx global>{`
+        .mens-cat-card { transform: translateZ(0); }
+        .mens-cat-img { display:block; aspect-ratio: 3/4; object-fit: cover; }
+        .mens-cat-overlay {
+          position: absolute; inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.55) 100%);
+          transition: opacity .3s ease;
+        }
+        .mens-cat-text {
+          position: absolute;
+          left: 24px;
+          right: 24px;
+          bottom: 22px;
+          color: #fff !important;
+        }
+        .mens-cat-title {
+          font-size: 24px;
+          line-height: 1.2;
+          margin: 0 0 6px;
+          font-weight: 700;
+          color: #fff !important;
+        }
+        .mens-cat-count {
+          margin: 0;
+          opacity: .95;
+          color: #fff !important;
+        }
+        .mens-cat-card:hover .mens-cat-overlay { opacity: .75; }
+        .mens-cat-card:hover { transform: translateY(-4px); transition: transform .25s ease; }
+      `}</style>
+    </section>
+  );
+}
