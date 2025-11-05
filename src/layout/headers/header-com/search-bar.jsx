@@ -10,7 +10,25 @@ const SearchBar = ({ isSearchOpen, setIsSearchOpen }) => {
     setCategory(value);
   };
 
-  const categories = ["electronics", "fashion", "beauty", "jewelry"];
+  // 🧩 Updated Men’s Wear Categories
+  const categories = [
+    "formal-shirts",
+    "t-shirts",
+    "polo-shirts",
+    "hoodies-sweatshirts",
+    "blazers-suits",
+    "jackets",
+    "jeans",
+    "trousers-chinos",
+    "sneakers",
+    "formal-shoes",
+    "belts",
+    "wallets",
+    "watches",
+    "sunglasses",
+    "perfumes-body-sprays"
+  ];
+
   return (
     <>
       <section
@@ -48,7 +66,7 @@ const SearchBar = ({ isSearchOpen, setIsSearchOpen }) => {
                         onClick={() => handleCategory(c)}
                         className="cursor-pointer"
                       >
-                        {c}
+                        {c.replace(/-/g, " ")}
                         {i < categories.length - 1 && ", "}
                       </a>
                     ))}
@@ -59,6 +77,7 @@ const SearchBar = ({ isSearchOpen, setIsSearchOpen }) => {
           </div>
         </div>
       </section>
+
       {/* body overlay */}
       <div
         onClick={() => setIsSearchOpen(false)}

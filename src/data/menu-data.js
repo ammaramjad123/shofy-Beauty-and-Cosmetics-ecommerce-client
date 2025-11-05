@@ -51,10 +51,9 @@ const menu_data = [
         title: 'Products',
         link: '/product-details',
         mega_menus: [
-          { title: 'Product Simple', link: '/product-details' },
-          { title: 'With Video', link: '/product-details-video' },
-          { title: 'With Countdown Timer', link: '/product-details-countdown' },
-          { title: 'Variations Swatches', link: '/product-details-swatches' },
+          { title: 'Accessories', link: '/product-details' },
+          { title: 'With Fresh Sale', link: '/product-details-countdown' },
+          { title: 'Clothing', link: '/product-details-swatches' },
         ]
       },
       {
