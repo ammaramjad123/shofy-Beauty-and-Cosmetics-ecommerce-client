@@ -7,28 +7,29 @@ import { useGetAllProductsQuery } from "@/redux/features/productApi";
 import { handleFilterSidebarClose } from "@/redux/features/shop-filter-slice";
 import ShopColorLoader from "@/components/loader/shop/color-filter-loader";
 
-const ColorFilter = ({setCurrPage,shop_right=false}) => {
+const ColorFilter = ({ setCurrPage, shop_right = false }) => {
   const { data: products, isError, isLoading } = useGetAllProductsQuery();
   const router = useRouter();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // handle color 
   const handleColor = (clr) => {
-    setCurrPage(1)
+    setCurrPage(1);
     router.push(
-      `/${shop_right?'shop-right-sidebar':'shop'}?color=${clr
+      `/${shop_right ? 'shop-right-sidebar' : 'shop'}?color=${clr
         .toLowerCase()
         .replace("&", "")
         .split(" ")
         .join("-")}`
-    )
+    );
     dispatch(handleFilterSidebarClose());
-  }
+  };
+
   // decide what to render
   let content = null;
 
   if (isLoading) {
-    content = <ShopColorLoader loading={isLoading}/>;
+    content = <ShopColorLoader loading={isLoading} />;
   }
   if (!isLoading && isError) {
     content = <ErrorMsg msg="There was an error" />;
@@ -47,8 +48,14 @@ const ColorFilter = ({setCurrPage,shop_right=false}) => {
     let uniqueColors = [
       ...new Map(allColor.map((color) => [color?.name, color])).values(),
     ];
+
     content = uniqueColors.map((item, i) => {
       if (item) {
+        // ✅ Fixed product count logic: counts unique products that include this color
+        const productCount = product_items.filter((p) =>
+          p.imageURLs.some((img) => img?.color?.name === item?.name)
+        ).length;
+
         return (
           <li key={i}>
             <div className="tp-shop-widget-checkbox-circle">
@@ -57,7 +64,7 @@ const ColorFilter = ({setCurrPage,shop_right=false}) => {
                 id={item.name}
                 checked={
                   router.query.color ===
-                  item.name.toLowerCase().replace("&", "").split(" ").join("-")
+                    item.name.toLowerCase().replace("&", "").split(" ").join("-")
                     ? "checked"
                     : false
                 }
@@ -75,12 +82,7 @@ const ColorFilter = ({setCurrPage,shop_right=false}) => {
               ></span>
             </div>
             <span className="tp-shop-widget-checkbox-circle-number">
-              {
-                product_items
-                  .map((p) => p.imageURLs)
-                  .flat()
-                  .filter((i) => i?.color?.name === item?.name).length
-              }
+              {productCount}
             </span>
           </li>
         );

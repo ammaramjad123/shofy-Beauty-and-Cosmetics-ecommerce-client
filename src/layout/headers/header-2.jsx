@@ -31,17 +31,17 @@ const HeaderTwo = ({ style_2 = false }) => {
                 <div className="col-md-6">
                   <div className="tp-header-info d-flex align-items-center">
                     <div className="tp-header-info-item">
-                      <a href="#">
+                      <a href="https://facebook.com" target="_blank">
                         <span>
                           <Facebook />
-                        </span> 7500k Followers
+                        </span>
                       </a>
                     </div>
                     <div className="tp-header-info-item">
                       <a href="tel:402-763-282-46">
                         <span>
                           <PhoneTwo />
-                        </span> +(966) 595 035 008
+                        </span> +670 413 90 762
                       </a>
                     </div>
                   </div>

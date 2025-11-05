@@ -47,7 +47,7 @@ const ProductAreaTwo = () => {
     content = <ErrorMsg msg="There was an error" />;
   }
   if (!isLoading && !isError && products?.data?.length === 0) {
-    content = <ErrorMsg msg="No Products found!" />;
+    content = <ErrorMsg msg="" />;
   }
   if (!isLoading && !isError && products?.data?.length > 0) {
     let product_items = products.data;
@@ -127,7 +127,7 @@ const ProductAreaTwo = () => {
   }
   return (
     <>
-      <section className="tp-best-area pb-60 pt-130">
+      <section className="tp-best-area pb-2 pt-40">
         <div className="container">{content}</div>
       </section>
     </>

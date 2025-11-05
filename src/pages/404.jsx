@@ -6,7 +6,7 @@ import SEO from "@/components/seo";
 import HeaderTwo from "@/layout/headers/header-2";
 import Footer from "@/layout/footers/footer";
 import Wrapper from "@/layout/wrapper";
-import error from '@assets/img/error/error.png';
+import error from "@assets/img/error/error.png";
 
 const ErrorPage = () => {
   return (
@@ -14,13 +14,24 @@ const ErrorPage = () => {
       <SEO pageTitle="404" />
       <HeaderTwo style_2={true} />
       {/* 404 area start */}
-      <section className="tp-error-area pt-110 pb-110">
+      <section className="tp-error-area pt-50 pb-110">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-6 col-lg-8 col-md-10">
               <div className="tp-error-content text-center">
                 <div className="tp-error-thumb">
-                  <Image src={error} alt="error img" />
+                  <Image
+                    src={error}
+                    alt="error img"
+                    width={600}
+                    height={600}
+                    quality={100}
+                    unoptimized
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto",
+                    }}
+                  />
                 </div>
 
                 <h3 className="tp-error-title">Oops! Page not found</h3>
