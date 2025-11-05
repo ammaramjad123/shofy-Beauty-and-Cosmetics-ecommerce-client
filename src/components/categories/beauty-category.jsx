@@ -10,11 +10,12 @@ import watchImg from "/public/assets/img/men/watches.jpg";
 import groomingImg from "/public/assets/img/men/grooming.jpg";
 
 const MEN_CATEGORIES = [
-  { id: 1, title: "Jackets & Outerwear", count: 12, slug: "jackets", img: jacketImg },
-  { id: 2, title: "Premium Footwear", count: 18, slug: "footwear", img: footwearImg },
-  { id: 3, title: "Watches & Accessories", count: 9, slug: "accessories", img: watchImg },
-  { id: 4, title: "Grooming Essentials", count: 6, slug: "grooming", img: groomingImg },
+  { id: 1, title: "Jackets & Outerwear", category: "Clothing", count: 4, img: jacketImg },
+  { id: 2, title: "Premium Footwear", category: "Beauty of Skin", count: 2, img: footwearImg },
+  { id: 3, title: "Watches & Accessories", category: "Bracelets", count: 3, img: watchImg },
+  { id: 4, title: "Grooming Essentials", category: "Necklaces", count: 2, img: groomingImg },
 ];
+
 
 export default function BeautyCategory() {
   return (
@@ -24,7 +25,9 @@ export default function BeautyCategory() {
           {MEN_CATEGORIES.map((item) => (
             <div key={item.id} className="col-xl-3 col-lg-3 col-md-6">
               <Link
-                href={`/shop?category=${encodeURIComponent(item.slug)}`}
+                href={`/shop?category=${encodeURIComponent(
+                  item.category.toLowerCase().replace(/&/g, "").split(" ").join("-")
+                )}`}
                 className="mens-cat-card d-block position-relative overflow-hidden rounded-3"
               >
                 {/* Image */}
