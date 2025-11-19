@@ -26,11 +26,11 @@ const SEO = ({ pageTitle }) => (
         content="Discover Eclipse — premium men's fashion for the modern era. Shop shirts, jackets, and accessories designed to stand out."
       />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://eclipse.vercel.app/" />
-      <meta
-        property="og:image"
-        content="/assets/img/icon/cover-metadata.png"
-      />
+      <meta property="og:url" content="https://eclipse-ecom.vercel.app/" />
+      <meta 
+  property="og:image" 
+  content="https://eclipse-ecom.vercel.app/assets/img/icon/cover-metadata.png" 
+/>
       <meta property="og:site_name" content="Eclipse" />
       <meta property="og:locale" content="en_US" />
 
@@ -41,10 +41,10 @@ const SEO = ({ pageTitle }) => (
         name="twitter:description"
         content="Explore premium men's clothing and accessories at Eclipse. Redefine your wardrobe with modern fashion essentials."
       />
-      <meta
-        name="twitter:image"
-        content="/assets/img/icon/cover-metadata.png"
-      />
+      <meta 
+  name="twitter:image" 
+  content="https://eclipse-ecom.vercel.app/assets/img/icon/cover-metadata.png" 
+/>
 
       {/* ===== 🔹 Additional metadata ===== */}
       <meta name="author" content="Eclipse" />
