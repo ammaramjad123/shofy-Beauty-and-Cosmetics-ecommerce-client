@@ -29,7 +29,7 @@ const SEO = ({ pageTitle }) => (
       <meta property="og:url" content="https://eclipse-ecom.vercel.app/" />
       <meta 
   property="og:image" 
-  content="https://eclipse-ecom.vercel.app/assets/img/icon/cover-metadata.png" 
+  content="https://eclipse-ecom.vercel.app/cover-metadata.png" 
 />
       <meta property="og:site_name" content="Eclipse" />
       <meta property="og:locale" content="en_US" />
@@ -43,7 +43,7 @@ const SEO = ({ pageTitle }) => (
       />
       <meta 
   name="twitter:image" 
-  content="https://eclipse-ecom.vercel.app/assets/img/icon/cover-metadata.png" 
+  content="https://eclipse-ecom.vercel.app/cover-metadata.png" 
 />
 
       {/* ===== 🔹 Additional metadata ===== */}
