@@ -30,7 +30,7 @@ const TrendingSpecialPrd = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:7000/api/products/all')
+    fetch('https://shofy-backend-git-main-ammar-amjads-projects.vercel.app/api/products/all')
       .then(res => res.json())
       .then(data => {
         setProducts(data.data.sort(() => 0.5 - Math.random()).slice(0, 7));
