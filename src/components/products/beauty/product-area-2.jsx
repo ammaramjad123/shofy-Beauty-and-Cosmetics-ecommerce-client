@@ -44,7 +44,7 @@ const ProductAreaTwo = () => {
     content = <HomeThreePrdTwoLoader loading={isLoading} />;
   }
   if (!isLoading && isError) {
-    content = <ErrorMsg msg="There was an error" />;
+    content = <ErrorMsg msg="" />;
   }
   if (!isLoading && !isError && products?.data?.length === 0) {
     content = <ErrorMsg msg="" />;
